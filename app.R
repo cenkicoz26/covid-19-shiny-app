@@ -9,15 +9,15 @@ library(reshape2)
 library(shiny)
 library(rgeos)
 
-#covid hftalık vaka sayısı ve turkiye shapefile verilerinin yüklenmesi
+#covid haftalık vaka sayısı ve turkiye shapefile verilerinin yüklenmesi
 load("veri.Rdata")
 
 #UI
 #Arayüzün oluşturulması: Sayfa kenarında dosya yükleme(file input),
-# Hafta girdi seçimi (SelecInput) ve il seçimi (SelecInput) girdilerinin drag and drop 
+# Hafta girdi seçimi (SelectInput) ve il seçimi (SelectInput) girdilerinin drag and drop 
 # şeklinde oluşturulması
 # Uygulamanın anlatıldığı giriş sekmesi ve Output çıktılarının tabsetpanel olarak dizayn edilmesi
-# İlk iki sekme ikili hafta karşlıaştılması olacağında column ile iki sütun olarak oluşturuldu.
+# İlk iki sekme ikili hafta karşışaltırılması olacağından column ile iki sütun olarak oluşturuldu.
 #İkinci sekme için raporlama kısmı ise fluidRow ile ekstra bir satır olarak verildi.
 #Son sekmede ise trendler illerin komşuları dahil olmak üzere oluşturuluyor.
 ui <- fluidPage(
@@ -68,7 +68,7 @@ ui <- fluidPage(
 server <- function(input, output,session) {
   
 #Eğer kullanıcı kendi dosyasını yüklemiyor ise global env.daki data seti
-# eğer yükleme yapıyor ise hem sistemdki veri hem de yüklenen verinin birleşimi ile oluşturulan verinin
+# eğer yükleme yapıyor ise hem sistemdeki veri hem de yüklenen verinin birleşimi ile oluşturulan verinin
 #reaktif olarak atanması
   mydata<-reactive({ InFile<-input$file1
   if(is.null(InFile)) {
@@ -91,13 +91,13 @@ server <- function(input, output,session) {
  #NAME_1 ile yeniden reaktif değişken ataması: Daha sonra merge aşamasında NAME_1 gerekli 
   vakaf<-reactive({cbind(vaka["NAME_1"],mydata()[input$hafta])})
   
- # fark ve kategori rekatif değişkenlerinin oluşturulması
+ # fark ve kategori reaktif değişkenlerinin oluşturulması
   frk<-reactive({
     (vakaf()[input$hafta[2]]-vakaf()[input$hafta[1]])*100/vakaf()[input$hafta[1]];
   })
   kat<-reactive({ifelse(frk()<0,"azalış","artış");
   })
-#tüm değişkenlerin hapefile ile merge yapılmadan önce tek bir dataframede olarak birleştirilmesi
+#tüm değişkenlerin shapefile ile merge yapılmadan önce tek bir dataframede olarak birleştirilmesi
   vakare<-reactive({temp<-cbind(vakaf(),frk(),kat())
   
   colnames(temp)<-c("NAME_1",input$hafta,"frk","kat") 
