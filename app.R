@@ -102,7 +102,7 @@ server <- function(input, output,session) {
   
   colnames(temp)<-c("NAME_1",input$hafta,"frk","kat") 
   temp})
-#neden koşul var: Çünkü iki hafat karşılaştırılması için iki hafta ya da fazla seçilebilir.
+#neden koşul var: Çünkü iki hafta karşılaştırılması için iki haftadan az ya da fazla hafta seçilebilir.
   turcovre<-reactive({validate(
     need(length(input$hafta)>=2, "İki adet hafta seçilmelidir (Trendler için tüm haftalar seçilebilir)"))
     merge(turkiye,vakare(),by="NAME_1")})
