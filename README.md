@@ -1,5 +1,6 @@
 # covid
 Covid -19 Türkiye Raporlama ve Karşılaştırma Uygulaması
+
 Bu uygulama Türkiye'deki haftalık vaka sayılarının karşılaştırılması ve raporlanması için hazırlanmıştır.
 Uygulamanın kullanımı ile ilgili bilgi giriş sekmesinde verilmiştir.
 Aşağıdaki adresten uygulamaya ulaşılabilir.
