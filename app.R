@@ -17,7 +17,7 @@ load("veri.Rdata")
 # Hafta girdi seçimi (SelectInput) ve il seçimi (SelectInput) girdilerinin drag and drop 
 # şeklinde oluşturulması
 # Uygulamanın anlatıldığı giriş sekmesi ve Output çıktılarının tabsetpanel olarak dizayn edilmesi
-# İlk iki sekme ikili hafta karşışaltırılması olacağından column ile iki sütun olarak oluşturuldu.
+# İlk iki sekme ikili hafta karşılaştırılması olacağından column ile iki sütun olarak oluşturuldu.
 #İkinci sekme için raporlama kısmı ise fluidRow ile ekstra bir satır olarak verildi.
 #Son sekmede ise trendler illerin komşuları dahil olmak üzere oluşturuluyor.
 ui <- fluidPage(
